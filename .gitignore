@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+election.db
+instance/
+.env

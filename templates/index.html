@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><span class="eyebrow">STUDENT COUNCIL</span><h1>Meet the candidates.</h1><p>Read each candidate's profile before casting your vote.</p><a class="btn" href="/vote">Go to voting</a></div><div class="hero-card">Election status <strong>{{ election_status }}</strong></div></section>
+{% for p in posts %}<section class="section"><div class="section-title"><h2>{{ p.name }}</h2><span>{{ candidates[p.id]|length }} candidate(s)</span></div><div class="grid">{% for c in candidates[p.id] %}<article class="candidate-card">{% if c.photo %}<img src="{{url_for('static',filename='uploads/'+c.photo)}}">{% else %}<div class="photo-placeholder">No photo</div>{% endif %}<div class="card-body"><h3>{{c.name}}</h3><div class="pill">{{c.class_name}}</div><p>{{c.description or 'Candidate profile.'}}</p><a class="text-link" href="/candidate/{{c.id}}">View profile →</a></div></article>{% endfor %}</div></section>{% endfor %}
+{% if not posts %}<div class="empty">No election posts have been added yet.</div>{% endif %}
+{% endblock %}
